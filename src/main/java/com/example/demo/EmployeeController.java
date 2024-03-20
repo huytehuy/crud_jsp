@@ -4,7 +4,7 @@ package com.example.demo;
 import java.sql.Connection;
 import java.util.List;
 
-public class Main {
+public class EmployeeController {
 
     public static void main(String[] args) {
         DBFunction db=new DBFunction();
@@ -31,10 +31,15 @@ public class Main {
         Connection conn=db.connect_to_db("postgres","postgres","huyhuy");
         db.insert_row(conn,"employee",name,address);
     }
-    public static void deleteEmployee(String name) {
+    public static void deleteEmployee(String id) {
         DBFunction db=new DBFunction();
         Connection conn=db.connect_to_db("postgres","postgres","huyhuy");
-        db.delete_row_by_name(conn,"employee",name);
+        db.delete_row_by_id(conn,"employee",id);
+    }
+    public static void updateEmployee(String id) {
+        DBFunction db=new DBFunction();
+        Connection conn=db.connect_to_db("postgres","postgres","huyhuy");
+        db.update_name(conn,"employee","Rahul","Raj");
     }
 
 

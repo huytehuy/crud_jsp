@@ -134,10 +134,10 @@ public class DBFunction {
             System.out.println(e);
         }
     }
-    public void delete_row_by_id(Connection conn,String table_name, int id){
+    public void delete_row_by_id(Connection conn,String table_name, String id){
         Statement statement;
         try{
-            String query=String.format("delete from %s where empid= %s",table_name,id);
+            String query=String.format("delete from %s where id= %s",table_name,id);
             statement=conn.createStatement();
             statement.executeUpdate(query);
             System.out.println("Data Deleted");

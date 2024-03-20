@@ -28,7 +28,7 @@
 <%--</table>--%>
 <%--</body>--%>
 <%--</html>--%>
-<%@ page import="com.example.demo.Main" %>
+<%@ page import="com.example.demo.EmployeeController" %>
 <%@ page import="com.example.demo.Employee" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
@@ -53,6 +53,15 @@
 </head>
 <body>
 <h1>Employee List</h1>
+<div id="addEmployeeForm" >
+    <!-- Your form fields go here -->
+    <!-- Form fields for employee data -->
+    <form action="AddEmployeeServlet" method="post">
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="address" placeholder="Address">
+        <button type="submit">Add Employee</button>
+    </form>
+</div>
 <%--<button onclick=<%= Main.addEmployee() %>>Add employee</button></td>--%>
 <table border="1">
     <tr>
@@ -63,7 +72,7 @@
         <th style="width: 40px">Remove</th>
 
     </tr>
-    <% for (Employee employee : Main.ShowEmployee()) { %>
+    <% for (Employee employee : EmployeeController.ShowEmployee()) { %>
     <tr>
         <td><%= employee.getId() %></td>
         <td><%= employee.getName() %></td>
@@ -71,8 +80,8 @@
         <td><button onclick="toggleAddEmployeeForm()"><i class="fas fa-edit"></i></button></td>
         <td>
             <form id="deleteForm_<%= employee.getId() %>" action="DeleteEmployeeServlet" method="post">
-                <input type="hidden" name="name" value="<%= employee.getName() %>">
-                <button type="submit">&#10006;</button>
+                <input type="hidden" name="id" value="<%= employee.getId() %>">
+                <button type="button" onclick="deleteEmployee('<%= employee.getName() %>', '<%= employee.getId() %>')">&#10006;</button>
             </form>
         </td>
     </tr>
@@ -85,17 +94,7 @@
         <p id="modalContent"></p>
     </div>
 </div>
-<div id="addEmployeeForm" >
-    <!-- Your form fields go here -->
-        <!-- Form fields for employee data -->
-    <form action="AddEmployeeServlet" method="post">
-        <input type="text" name="name" placeholder="Name">
-        <input type="text" name="address" placeholder="Address">
-        <button type="submit">Add Employee</button>
-    </form>
 
-
-</div>
 
 
 <script>
@@ -111,6 +110,13 @@
     function closeModal() {
         var modal = document.getElementById("myModal");
         modal.style.display = "none";
+    }
+    function deleteEmployee(employeeName, employeeId) {
+        var confirmation = confirm("Are you sure you want to delete ID=" + employeeId + "?");
+        if (confirmation) {
+            var form = document.getElementById("deleteForm_" + employeeId);
+            form.submit();
+        }
     }
 
 </script>
