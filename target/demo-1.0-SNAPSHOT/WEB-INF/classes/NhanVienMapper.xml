@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.NhanVienMapper">
+
+    <select id="findById" resultType="com.example.demo.model.NhanVien">
+        SELECT * FROM nhanvien WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultType="com.example.demo.model.NhanVien">
+        SELECT * FROM nhanvien
+    </select>
+
+    <insert id="save">
+        INSERT INTO nhanvien ( ma_nv, ho_ten, so_dien_thoai, gioi_tinh, ngay_sinh)
+        VALUES (#{ma_nv}, #{ho_ten}, #{so_dien_thoai},#{gioi_tinh},#{ngay_sinh})
+    </insert>
+
+    <update id="update">
+        UPDATE nhanvien
+        SET ma_nv = #{ma_nv}, ho_ten = #{ho_ten}, so_dien_thoai = #{so_dien_thoai}, gioi_tinh = #{gioi_tinh}, ngay_sinh = #{ngay_sinh}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM nhanvien WHERE id = #{id}
+    </delete>
+
+</mapper>

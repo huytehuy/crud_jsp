@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<head>
+   <title>Danh sách sản phẩm</title>
+</head>
+<body>
+<h1>Danh sách sản phẩm</h1>
+<h:dataTable value="${nhanviens}" var="product">
+   <h:column>
+      <f:facet name="header">ID</f:facet>
+      #{nhanvien.id}
+   </h:column>
+   <h:column>
+      <f:facet name="header">Tên sản phẩm</f:facet>
+      #{nhanvien.name}
+   </h:column>
+   <h:column>
+      <f:facet name="header">Mô tả</f:facet>
+      #{nhanvien.ma_nv}
+   </h:column>
+   <h:column>
+      <f:facet name="header">Giá</f:facet>
+      #{nhanvien.ngay_sinh}
+   </h:column>
+   <h:column>
+      <f:facet name="header">Số lượng</f:facet>
+      #{nhanvien.so_dien_thoai}
+   </h:column>
+   <h:column>
+      <f:facet name="header">Chức năng</f:facet>
+      <a href="editProduct.xhtml?id=#{nhanvien.id}">Sửa</a> |
+      <a href="deleteProduct.xhtml?id=#{nhanvien.id}">Xóa</a>
+   </h:column>
+</h:dataTable>
+<a href="createProduct.xhtml">Thêm sản phẩm mới</a>
+</body>
+</html>
